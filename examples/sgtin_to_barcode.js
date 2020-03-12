@@ -30,7 +30,7 @@ epc.getParser('SGTIN')
                 }
 
                 barcodeWCheckBit[barcodeWOCheckBit.length] = Math.abs((Math.round(barcodeWCheckBit[barcodeWOCheckBit.length]/10)*10) -  barcodeWCheckBit[barcodeWOCheckBit.length]);
-                console.debug("Barcode: ", barcodeWCheckBit.join(''));
+                console.debug("Barcode: ", barcodeWCheckBit.slice(1,barcodeWCheckBit.length).join(''));
 			})
 			.fail(function(err) {
 				console.error(err);

@@ -40,7 +40,7 @@ var self = Object.create(Abstract, {
 					self.parts.Filter = parseInt(bh.bits.slice(8, 11), 2);
 					self.parts.Partition = parseInt(bh.bits.slice(11, 14), 2);
 
-					// find the end of the company portion by calculating the number of bits 
+					// find the end of the company portion by calculating the number of bits
 					// and adding it to the starting offset
 					var companyPrefixEnd = 14 + partition.bits.company[self.parts.Partition];
 
@@ -58,6 +58,23 @@ var self = Object.create(Abstract, {
 					self.parts.ItemReference = item;
 					self.parts.SerialNumber = parseInt(bh.bits.slice(58), 2);
 
+                    let barcodeWOCheckBit = self.parts.CompanyPrefix + self.parts.ItemReference
+                    let barcodeWCheckBit = [0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+
+                    for(let i = 1; i < barcodeWOCheckBit.length; i++) {
+                        if((i+1)%2 == 0) {
+                            let val = parseInt(barcodeWOCheckBit[i]) * 3;
+                            barcodeWCheckBit[i] = barcodeWOCheckBit[i];
+                            barcodeWCheckBit[barcodeWOCheckBit.length] += val;
+                        } else {
+                            let val = parseInt(barcodeWOCheckBit[i]) * 1;
+                            barcodeWCheckBit[i] = barcodeWOCheckBit[i];
+                            barcodeWCheckBit[barcodeWOCheckBit.length] += val;
+                        }
+                    }
+                    barcodeWCheckBit[barcodeWOCheckBit.length] = Math.abs((Math.round(barcodeWCheckBit[barcodeWOCheckBit.length]/10)*10) -  barcodeWCheckBit[barcodeWOCheckBit.length]);
+
+                    self.parts.gtin13 =  barcodeWCheckBit.slice(1,barcodeWCheckBit.length).join('');
 					resolve(self);
 				} catch (e) {
 					log.error(TAG, e);

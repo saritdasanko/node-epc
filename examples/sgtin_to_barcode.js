@@ -2,9 +2,7 @@
 
 var epc = require('../');
 //var epc = require('node-epc');
-
 let example = "30340129FC54C544A817C812"
-
 // Parse using a specific encoding
 epc.getParser('SGTIN')
 	.then(function(sgtin) {

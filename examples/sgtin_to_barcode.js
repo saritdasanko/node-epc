@@ -10,11 +10,6 @@ epc.getParser('SGTIN')
 	.then(function(sgtin) {
 		sgtin.parse(example)
 			.then(function(parsed) {
-				// console.log('Encoding = ' + parsed.getName());
-				// console.log('Company Prefix = ' + parsed.parts.CompanyPrefix);
-				// console.log('Item Reference = ' + parsed.parts.ItemReference);
-				// console.log('Serial Number = ' + parsed.parts.SerialNumber);
-
                 let barcodeWOCheckBit = parsed.parts.CompanyPrefix + parsed.parts.ItemReference
                 let barcodeWCheckBit = [0,0,0,0,0,0,0,0,0,0,0,0,0,0];
                 for(let i = 1; i < barcodeWOCheckBit.length; i++) {

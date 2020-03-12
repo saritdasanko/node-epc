@@ -3,7 +3,7 @@
 var epc = require('../');
 
 //var epc = require('node-epc');
-let example = "30340129FC54C544A817C812"
+let example = "30363A22CC00AB437E11D630"
 
 
 epc.getParser('SGTIN')

@@ -74,8 +74,8 @@ var self = Object.create(Abstract, {
                             barcodeWCheckBit[barcodeWOCheckBit.length] += val;
                         }
                     }
-                    console.info("barcodeWCheckBit: ", barcodeWCheckBit);
-                    barcodeWCheckBit[barcodeWOCheckBit.length] = Math.abs((Math.ceil(barcodeWCheckBit[barcodeWOCheckBit.length]/10)*10) -  barcodeWCheckBit[barcodeWOCheckBit.length]);
+                    console.log("barcodeWCheckBit: ", barcodeWCheckBit);
+                    barcodeWCheckBit[barcodeWOCheckBit.length] = Math.abs((Math.round(barcodeWCheckBit[barcodeWOCheckBit.length]/10)*10) -  barcodeWCheckBit[barcodeWOCheckBit.length]);
 
                     self.parts.gtin13 =  barcodeWCheckBit.slice(1,barcodeWCheckBit.length).join('');
 					resolve(self);

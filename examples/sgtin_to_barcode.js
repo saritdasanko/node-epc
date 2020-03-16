@@ -5,6 +5,8 @@ var epc = require('../');
 //var epc = require('node-epc');
 let epctag = "30340129FC54C544A817C812";
 
+epctag = "30340129FC279DC4A817C80D";
+
 
 function parseEPC(epctag) {
     return new Promise(async (resolve, reject) => {

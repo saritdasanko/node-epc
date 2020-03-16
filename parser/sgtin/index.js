@@ -58,10 +58,10 @@ var self = Object.create(Abstract, {
 					self.parts.ItemReference = item;
 					self.parts.SerialNumber = parseInt(bh.bits.slice(58), 2);
 
-                    console.log("CompanyPrefix: ", self.parts.CompanyPrefix, " ItemReference: ", self.parts.ItemReference);
+                    // console.log("CompanyPrefix: ", self.parts.CompanyPrefix, " ItemReference: ", self.parts.ItemReference);
 
                     let barcodeWOCheckBit = self.parts.CompanyPrefix + self.parts.ItemReference.substring(1, self.parts.ItemReference);
-                    console.log("barcodeWOCheckBit: ", barcodeWOCheckBit, " length: ", barcodeWOCheckBit.length);
+                    // console.log("barcodeWOCheckBit: ", barcodeWOCheckBit, " length: ", barcodeWOCheckBit.length);
                     barcodeWOCheckBit = barcodeWOCheckBit
                     let barcodeWCheckBit = [0,0,0,0,0,0,0,0,0,0,0,0,0];
 
@@ -76,7 +76,7 @@ var self = Object.create(Abstract, {
                             barcodeWCheckBit[barcodeWOCheckBit.length] += val;
                         }
                     }
-                    console.log("barcodeWCheckBit: ", barcodeWCheckBit);
+                    // console.log("barcodeWCheckBit: ", barcodeWCheckBit);
                     barcodeWCheckBit[barcodeWOCheckBit.length] = Math.abs((Math.ceil(barcodeWCheckBit[barcodeWOCheckBit.length]/10)*10) -  barcodeWCheckBit[barcodeWOCheckBit.length]);
 
                     self.parts.gtin13 =  barcodeWCheckBit.slice(1,barcodeWCheckBit.length).join('');

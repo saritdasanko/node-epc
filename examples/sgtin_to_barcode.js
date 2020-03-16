@@ -5,7 +5,7 @@ var epc = require('../');
 //var epc = require('node-epc');
 let epctag = "30340129FC54C544A817C812";
 
-epctag = "30340129FC279DC4A817C80D";
+epctag = "303404252832ADC4A817C810";
 
 
 function parseEPC(epctag) {

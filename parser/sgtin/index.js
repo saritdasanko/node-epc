@@ -62,11 +62,15 @@ var self = Object.create(Abstract, {
 
                     let barcodeWOCheckBit = self.parts.CompanyPrefix + self.parts.ItemReference.substring(1, self.parts.ItemReference);
                     // console.log("barcodeWOCheckBit: ", barcodeWOCheckBit, " length: ", barcodeWOCheckBit.length);
-                    barcodeWOCheckBit = barcodeWOCheckBit
-                    let barcodeWCheckBit = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+                    if(barcodeWOCheckBit.length == 12) {
+                        barcodeWOCheckBit = "0" + barcodeWOCheckBit;
+                    } else if(barcodeWOCheckBit.length == 13) {
+                        barcodeWOCheckBit = barcodeWOCheckBit
+                    }
+                    let barcodeWCheckBit = [0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
-                    for(let i = 0; i < barcodeWOCheckBit.length; i++) {
-                        if((i+1)%2 == 0) {
+                    for(let i = 1; i < barcodeWOCheckBit.length; i++) {
+                        if(i%2 == 0) {
                             let val = parseInt(barcodeWOCheckBit[i]) * 3;
                             barcodeWCheckBit[i] = barcodeWOCheckBit[i];
                             barcodeWCheckBit[barcodeWOCheckBit.length] += val;
